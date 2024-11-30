@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emulación MMU</title>
+    <script src="/scripts/main.js" defer></script>
+    <style>
+        .vista {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        .memoria-item {
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            border: 1px solid black;
+            text-align: center;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Emulación de MMU</h1>
+    
+    <!-- Configuración del SO -->
+    <div id="configuracion-so" class="vista">
+        <h2>Configuración del SO</h2>
+        <form id="form-so">
+            <label for="memoria-virtual">Memoria Virtual (Páginas):</label>
+            <input type="number" id="memoria-virtual" required>
+            <br><br>
+            <label for="memoria-fisica">Memoria Física (Marcos):</label>
+            <input type="number" id="memoria-fisica" required>
+            <br><br>
+            <label for="algoritmo">Algoritmo de Paginación:</label>
+            <select id="algoritmo">
+                <option value="FIFO">FIFO</option>
+                <option value="Óptimo">Óptimo</option>
+                <option value="RLU">RLU</option>
+            </select>
+            <br><br>
+            <button type="submit">Configurar</button>
+        </form>
+    </div>
+
+    <!-- Agregar Programas -->
+    <div id="configuracion-programas" class="vista">
+        <h2>Agregar Programas</h2>
+        <form id="form-programa">
+            <label for="nombre">Nombre del Programa:</label>
+            <input type="text" id="nombre" required>
+            <br><br>
+            <label for="tamano">Tamaño del Programa:</label>
+            <input type="number" id="tamano" required>
+            <br><br>
+            <button type="submit">Agregar Programa</button>
+        </form>
+        <ul id="lista-programas"></ul>
+    </div>
+
+    <!-- Lista de Ejecución -->
+    <div id="lista-ejecucion" class="vista">
+        <h2>Lista de Ejecución</h2>
+        <button onclick="iniciarEmulacion()">Iniciar Emulación</button>
+    </div>
+
+    <!-- Estado de Memoria -->
+    <div id="vista-memoria-fisica" class="vista">
+        <h2>Estado de Memoria Física</h2>
+    </div>
+    <div id="vista-fallos" class="vista">
+        <h2>Fallos de Página</h2>
+    </div>
+</body>
+</html>
